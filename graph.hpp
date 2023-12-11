@@ -71,9 +71,9 @@ class Graph {
             fout.close();
             system("dot -Tpng graphe.dot > graph.png");
         }
-
+        
         Vertex& get_vertex(int num) {
-            for(Vertex &vertex : graph) {
+            for(Vertex &vertex : vertice) {
                 if(vertex.num == num) {
                     return vertex;
                 }

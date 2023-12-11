@@ -12,5 +12,6 @@ int main() {
     g.add_edge(1, 2, 7.3);
     g.printvector();
     g.printgraphviz2();
+    g.deep_search(g);
     return 0;
 }
