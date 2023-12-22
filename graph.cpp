@@ -1,4 +1,3 @@
-#include <iostream>
 #include "graph.hpp"
 
 int main() {
@@ -12,6 +11,8 @@ int main() {
     g.add_edge(1, 2, 7.3);
     g.printvector();
     g.printgraphviz2();
-    g.deep_search(g);
+    g.dfs();
+    //g.shortestPath(0);
+    g.printShortestPath(0);
     return 0;
 }
