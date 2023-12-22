@@ -47,6 +47,10 @@
             float dist[sizeof(vertice)];
             int pred[sizeof(vertice)];
 
+            void print(){
+                cout << sizeof(vertice) << endl;
+            }
+            
             void add_vertices(int Vertices){
                 vertice.push_back(Vertex(Vertices)); // essayer sans construction de Vertex
             };
@@ -85,62 +89,6 @@
                 fout << "}" << endl;
                 fout.close();
                 system("dot -Tpng graphe.dot > graph.png");
-            }
-
-            // Dijkstra algorithm
-            void shortestPath(int start) {   // The set is filled with the vertex number that is being processed now
-                Visited[start]=true;
-                cout<<"\nLe plus court chemin de "<<start<<" vers chaque sommet est : \n";
-                // A priority queue is used to get vertices in the order of their distance from source vertex.
-                priority_queue<pair<float,int>, vector<pair<float,int>>, greater<pair<float,int>>> Q; // Q contains a pair of distance and vertex number
-                Q.push({0,start});
-                while(!Q.empty()) {
-                    int u = Q.top().second;     // Pick the smallest distance vertex from Q[]
-                    Q.pop();      // Remove the picked vertex from Q[]
-                    for (int i = 0; i < vertice[u].edges.size(); i++) {
-                        Edge& edg=vertice[u].edges[i];
-                        // If not visited then mark it as visited and enqueue it
-                        if (!Visited[edg.num]) {
-                            Visited[edg.num] = true;
-                            float w = edg.val;
-                            Q.push({dist[u] + w, edg.num});
-                            dist[edg.num] = dist[u] + w;
-                            pred[edg.num] = u;
-                        } else if (dist[u]+edg.val < dist[edg.num]) {
-                            // Relaxing the edge
-                            dist[edg.num] = dist[u] + edg.val;
-                            pred[edg.num] = u;
-                        }
-                    }
-                }
-            }
-            
-            // Function to print the constructed distance array
-            void printShortestPath(int st) {
-                cout << "Distance from " << st << " to all other vertices are:\n";
-                for (int i = 0; i < sizeof(vertice); i++)
-                    cout << dist[i] << " ";
-                cout << endl;
-                /*
-                This function prints shortest path from src to dest.
-                It uses parent[] to build the path.
-                */
-                printPath(st);
-            }
-
-            // Print the path
-            void printPath(int dest) {
-                Stack s(sizeof(vertice)); // Create a stack
-                int temp = dest; // Set the destination city as the last node
-                while (temp != -1) { // Run till the source city is reached
-                    s.push(temp); // Push the current city to the stack
-                    temp = pred[temp]; // Get the predecessor of the current city
-                }
-                printf("\n%d",dest);
-                // All cities must be printed in reverse order
-                while (!s.isEmpty()) {
-                    printf(" <- %d",s.pop());
-                }
             }
 
             void dfs () {
@@ -186,3 +134,6 @@
                 matrix.push_back(s);
             }
     };*/
+
+    // Virtual pour avoir une liaision dinamique
+    // throw / try - catch : pour les exceptions.

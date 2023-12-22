@@ -12,7 +12,8 @@ int main() {
     g.printvector();
     g.printgraphviz2();
     g.dfs();
+    //g.print();
     //g.shortestPath(0);
-    g.printShortestPath(0);
+    //g.printShortestPath(0);
     return 0;
 }
