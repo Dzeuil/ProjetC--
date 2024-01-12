@@ -1,15 +1,17 @@
 // stack.hpp
 #include <iostream>
 #include <vector>
+#include <typeinfo>
+
+template <typename T, typename U>
 
 class Stack {
     private:
-        std::vector<int> stack_vector;
+        std::vector<T,U> stack_vector;
         int taille;
-    
     public:
         Stack(int taille) :taille(taille){
-            stack_vector = std::vector<int>(taille);
+            stack_vector = std::vector<T,U>(taille);
             stack_vector.shrink_to_fit();
         }
 
@@ -22,7 +24,12 @@ class Stack {
             }
         }
         
-        void push(int data) {
+        void push(T data) {
+            stack_vector.insert(stack_vector.begin() + taille, data);
+            taille ++;
+        }
+
+        void push(U data) {
             stack_vector.insert(stack_vector.begin() + taille, data);
             taille ++;
         }
@@ -32,11 +39,19 @@ class Stack {
                 throw std::runtime_error("Stack is empty. Cannot pop an element.");
             }
 
-            int popped_data = stack_vector[taille-1];
-            stack_vector.erase(stack_vector.begin() + taille-1);
-            taille --;
+            /*if (typeid(stack_vector[taille-1]) == T) {*/
+            T popped_data = stack_vector[taille-1];
+                stack_vector.erase(stack_vector.begin() + taille-1);
+                taille --;
 
-            return popped_data;
+                return popped_data;
+            /*} else if (typeid(stack_vector[taille-1]) == U) {
+                U popped_data = stack_vector[taille-1];
+                stack_vector.erase(stack_vector.begin() + taille-1);
+                taille --;
+            }
+            std::cout << typeid(U).name() << std::endl;
+            std::cout << typeid(T).name() << std::endl;*/
         }
 
         void print() {

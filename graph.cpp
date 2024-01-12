@@ -47,8 +47,16 @@ int main() {
     m.addarrete(7, 5, 9.8);
     m.addarrete(7, 6, 4.78);
     m.PrintMatrice();
+    
+    Matrix A = m.PCC();
+    A.PrintMatrice();
     //g.print();
     //g.shortestPath(0);
     //g.printShortestPath(0);
+    Matrix m1 ("ex0.gr");
+    m1.PrintMatrice();
+    Matrix A1 = m1.PCC();
+    cout << endl;
+    cout << A1 << endl;
     return 0;
 }
